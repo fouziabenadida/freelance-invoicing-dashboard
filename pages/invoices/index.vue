@@ -79,6 +79,8 @@ class="text-blue-600 hover:text-blue-800 text-sm transition"
 import InvoiceModal from '~/components/invoices/InvoiceModal.vue'
 import { ref,onMounted, watch } from 'vue'
 import jsPDF from 'jspdf'
+import { toast } from 'vue3-toastify'
+
 
 const isModalOpen = ref(false)
 
@@ -111,6 +113,7 @@ function handleSubmit(invoice: any) {
     date: invoice.date,
     status: invoice.status
   })
+      toast.success('Invoice saved successfully!')
 }
 
 function exportToPDF(invoice: any) {

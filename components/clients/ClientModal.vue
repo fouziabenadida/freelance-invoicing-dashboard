@@ -60,6 +60,7 @@
 <script setup lang="ts">
 const props = defineProps<{ isOpen: boolean }>()
 const emit = defineEmits(['close', 'submit'])
+import { toast } from 'vue3-toastify'
 
 const form = ref({
   name: '',
@@ -81,7 +82,8 @@ function close() {
 
 function submit() {
   if (!form.value.name || !form.value.email || !form.value.company) {
-    error.value = 'Please fill in all fields.'
+toast.error('Please fill in all fields.')
+error.value = 'Please fill in all fields.'
     return
   }
 

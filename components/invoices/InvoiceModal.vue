@@ -76,6 +76,8 @@
 </template>
 
 <script setup lang="ts">
+import { toast } from 'vue3-toastify'
+
 const props = defineProps<{
   isOpen: boolean
   clients: { id: number; name: string }[]
@@ -114,7 +116,8 @@ function submit() {
     !form.value.date ||
     !form.value.status
   ) {
-    error.value = 'Please fill in all fields.'
+   toast.error('Please fill in all fields.')
+error.value = 'Please fill in all fields.'
     return
   }
 

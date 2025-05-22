@@ -63,6 +63,9 @@
 import { ref, onMounted, watch } from 'vue'
 import ClientModal from '~/components/clients/ClientModal.vue'
 import ConfirmDialog from '~/components/common/ConfirmDialog.vue'
+import { toast } from 'vue3-toastify'
+
+
 const clients = ref<any[]>([])
 
 const isModalOpen = ref(false)
@@ -89,9 +92,12 @@ function handleClientSubmit(client: any) {
     id: clients.value.length + 1,
     ...client
   })
+    toast.success('Client added successfully!')
 }
+
 function confirmDeletion() {
   clients.value = clients.value.filter(c => c.id !== clientToDelete.value.id)
+  toast.success(`"${clientToDelete.value.name}" was deleted.`)
   showConfirm.value = false
   clientToDelete.value = null
 }
@@ -100,6 +106,7 @@ function cancelDeletion() {
   showConfirm.value = false
   clientToDelete.value = null
 }
+
 function deleteClient(id: number) {
   const target = clients.value.find(c => c.id === id)
   if (!target) return
@@ -107,6 +114,8 @@ function deleteClient(id: number) {
   clientToDelete.value = target
   showConfirm.value = true
 }
+
+
 const filteredClients = computed(() =>
   clients.value.filter(c =>
     c.name.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
