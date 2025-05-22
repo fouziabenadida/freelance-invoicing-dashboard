@@ -1,0 +1,16 @@
+<template>
+  <div class="flex h-screen bg-gray-100 text-gray-900">
+    <Sidebar />
+    <div class="flex-1 flex flex-col">
+      <Header />
+      <main class="flex-1 overflow-y-auto p-6">
+        <slot />
+      </main>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Sidebar from '~/components/layout/sidebar.vue'
+import Header from '~/components/layout/header.vue'
+</script>
