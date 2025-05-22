@@ -46,12 +46,18 @@
                 {{ invoice.status }}
               </span>
             </td>
-            <td class="py-3">
+  <td class="py-3 space-x-2">
   <button
     @click="exportToPDF(invoice)"
-    class="text-blue-600 hover:underline text-sm"
+class="text-blue-600 hover:text-blue-800 text-sm transition"
   >
-    📄 Exporter
+    📄 Export
+  </button>
+  <button
+    @click="deleteInvoice(invoice.id)"
+ class="text-red-600 hover:text-red-800 text-sm transition"
+  >
+    🗑 Delete
   </button>
 </td>
 
@@ -60,8 +66,9 @@
       </table>
     </div>
   </div>
-  <InvoiceModal
+<InvoiceModal
   :isOpen="isModalOpen"
+  :clients="clients"
   @close="isModalOpen = false"
   @submit="handleSubmit"
 />
@@ -108,6 +115,10 @@ function exportToPDF(invoice: any) {
   doc.text(`Statut : ${invoice.status}`, 20, 70)
 
   doc.save(`invoice-${invoice.id}.pdf`)
+}
+
+function deleteInvoice(id: number) {
+  invoices.value = invoices.value.filter((inv) => inv.id !== id)
 }
 
 </script>
