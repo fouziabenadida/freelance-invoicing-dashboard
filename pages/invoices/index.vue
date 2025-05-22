@@ -65,29 +65,36 @@ class="text-blue-600 hover:text-blue-800 text-sm transition"
         </tbody>
       </table>
     </div>
-  </div>
-<InvoiceModal
+    <InvoiceModal
   :isOpen="isModalOpen"
   :clients="clients"
   @close="isModalOpen = false"
   @submit="handleSubmit"
 />
+  </div>
+
 </template>
 
 <script setup lang="ts">
 import InvoiceModal from '~/components/invoices/InvoiceModal.vue'
-
 import { ref,onMounted, watch } from 'vue'
 import jsPDF from 'jspdf'
 
-const invoices = ref<any[]>([])
-
 const isModalOpen = ref(false)
 
+const invoices = ref<any[]>([])
+
+const clients = ref<any[]>([])
+
 onMounted(() => {
-  const saved = localStorage.getItem('invoices')
-  if (saved) {
-    invoices.value = JSON.parse(saved)
+  const savedClients = localStorage.getItem('clients')
+  if (savedClients) {
+    clients.value = JSON.parse(savedClients)
+  }
+
+  const savedInvoices = localStorage.getItem('invoices')
+  if (savedInvoices) {
+    invoices.value = JSON.parse(savedInvoices)
   }
 })
 
@@ -96,9 +103,13 @@ watch(invoices, (newVal) => {
 }, { deep: true })
 
 function handleSubmit(invoice: any) {
+  const client = clients.value.find(c => c.id === Number(invoice.clientId))
   invoices.value.push({
     id: invoices.value.length + 1,
-    ...invoice
+    client: client ? client.name : 'Unknown',
+    amount: invoice.amount,
+    date: invoice.date,
+    status: invoice.status
   })
 }
 
