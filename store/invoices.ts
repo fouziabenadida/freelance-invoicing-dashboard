@@ -16,9 +16,13 @@ export const useInvoiceStore = defineStore('invoices', {
     save() {
       localStorage.setItem('invoices', JSON.stringify(this.invoices))
     },
-    load() {
-      const data = localStorage.getItem('invoices')
-      if (data) this.invoices = JSON.parse(data)
-    },
+   load() {
+  const data = localStorage.getItem('invoices')
+  if (data) {
+    this.invoices = JSON.parse(data)
+    console.log('🔍 Factures chargées :', this.invoices)
+  }
+}
+
   },
 })
