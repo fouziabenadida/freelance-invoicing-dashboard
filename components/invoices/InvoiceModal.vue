@@ -4,7 +4,7 @@
     class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
   >
     <div class="bg-white p-8 rounded-2xl w-full max-w-lg shadow-xl border border-gray-200">
-      <!-- Header -->
+
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-xl font-semibold text-gray-900">New Invoice</h2>
         <button @click="close" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">
@@ -12,9 +12,8 @@
         </button>
       </div>
 
-      <!-- Form -->
+     
       <form class="space-y-5" @submit.prevent="submit">
-        <!-- Select Client -->
         <div class="space-y-1">
           <label class="text-sm text-gray-600">Client</label>
           <select v-model="form.clientId" class="input cursor-pointer">
@@ -29,7 +28,6 @@
           </select>
         </div>
 
-        <!-- Amount -->
         <div class="space-y-1">
           <label class="text-sm text-gray-600">Amount (€)</label>
           <input
@@ -40,7 +38,6 @@
           />
         </div>
 
-        <!-- Date -->
         <div class="space-y-1">
           <label class="text-sm text-gray-600">Date</label>
           <input
@@ -50,7 +47,6 @@
           />
         </div>
 
-        <!-- Status -->
         <div class="space-y-1">
           <label class="text-sm text-gray-600">Status</label>
           <select v-model="form.status" class="input cursor-pointer">
@@ -60,10 +56,10 @@
           </select>
         </div>
 
-        <!-- Error Message -->
+    
         <p v-if="error" class="text-sm text-red-500">{{ error }}</p>
 
-        <!-- Save Button -->
+
         <button
           type="submit"
           class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"

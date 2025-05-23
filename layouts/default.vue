@@ -5,7 +5,7 @@
       <Header />
       <main class="flex-1 overflow-y-auto p-6">
         <slot />
-      </main>
+      </main>  
     </div>
   </div>
 </template>
@@ -13,4 +13,15 @@
 <script setup lang="ts">
 import Sidebar from '~/components/layout/sidebar.vue'
 import Header from '~/components/layout/header.vue'
+
+import { useClientStore } from '~/store/clients'
+import { useInvoiceStore } from '~/store/invoices'
+
+const clientStore = useClientStore()
+const invoiceStore = useInvoiceStore()
+
+onMounted(() => {
+  clientStore.load()
+  invoiceStore.load()
+})
 </script>
