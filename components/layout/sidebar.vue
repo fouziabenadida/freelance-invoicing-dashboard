@@ -2,13 +2,12 @@
   <div>
     <!-- Mobile Sidebar -->
     <aside v-if="showSidebar"
-           class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 z-50 md:hidden p-4">
+      class="fixed inset-y-0 left-0 w-64 h-full bg-white border-r border-gray-200 z-50 md:hidden p-4">
       <div class="flex justify-between items-center mb-6">
         <div class="text-blue-600 font-bold text-xl">InvoicePro</div>
         <button @click="$emit('close')" class="text-gray-600">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
@@ -44,6 +43,7 @@ const props = defineProps<{ showSidebar: boolean }>()
 .nav-link {
   @apply block px-3 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition font-medium;
 }
+
 .router-link-exact-active {
   @apply bg-blue-100 text-blue-700 font-semibold;
 }

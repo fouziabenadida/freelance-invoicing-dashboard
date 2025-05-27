@@ -1,9 +1,10 @@
 <template>
-  <div class="min-h-screen flex bg-gray-50">
+  <div class="h-screen flex overflow-hidden bg-gray-50">
     <Sidebar :showSidebar="isSidebarOpen" @close="isSidebarOpen = false" />
-    <div class="flex-1 flex flex-col min-h-screen">
+
+    <div class="flex-1 flex flex-col overflow-hidden">
       <Header @toggleSidebar="isSidebarOpen = !isSidebarOpen" />
-      <main class="flex-1 p-4 overflow-y-auto">
+      <main class="flex-1 overflow-y-auto p-4">
         <NuxtPage />
       </main>
     </div>
@@ -16,6 +17,7 @@ import Header from '~/components/layout/Header.vue'
 
 import { useClientStore } from '~/store/clients'
 import { useInvoiceStore } from '~/store/invoices'
+
 const isSidebarOpen = ref(false)
 
 const clientStore = useClientStore()
