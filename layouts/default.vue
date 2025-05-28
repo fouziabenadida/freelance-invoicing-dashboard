@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import Sidebar from '~/components/layout/Sidebar.vue'
-import Header from '~/components/layout/Header.vue'
+import Sidebar from '~/components/layout/sidebar.vue'
+import Header from '~/components/layout/header.vue'
 
 import { useClientStore } from '~/store/clients'
 import { useInvoiceStore } from '~/store/invoices'
