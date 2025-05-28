@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import Sidebar from '~/components/layout/Sidebar.vue'
+
 import Header from '~/components/layout/Header.vue'
 
 import { useClientStore } from '~/store/clients'
