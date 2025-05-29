@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import Brand from './Brand.vue'
-import SidebarLinks from './SidebarLinks.vue'
+import Brand from '../ui/Brand.vue'
+import SidebarLinks from '../ui/SidebarLinks.vue'
 const props = defineProps<{ showSidebar: boolean }>()
 </script>
 
