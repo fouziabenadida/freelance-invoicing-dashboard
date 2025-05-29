@@ -106,15 +106,32 @@ watch(invoices, (newVal) => {
 
 function handleSubmit(invoice: any) {
   const client = clients.value.find(c => c.id === Number(invoice.clientId))
+  const clientName = client ? client.name : 'Unknown'
+
+  const existingStatuses = invoices.value
+    .filter(inv => inv.client === clientName)
+    .map(inv => inv.status)
+
+  // Vérifie s'il existe déjà une facture d'un autre statut pour ce client
+  const hasConflict = existingStatuses.some(status => status !== invoice.status)
+
+  if (hasConflict) {
+    toast.error(`This client already has an invoice with a different status.`)
+    return
+  }
+
   invoices.value.push({
     id: invoices.value.length + 1,
-    client: client ? client.name : 'Unknown',
+    client: clientName,
     amount: invoice.amount,
     date: invoice.date,
     status: invoice.status
   })
-      toast.success('Invoice saved successfully!')
+
+  toast.success('Invoice saved successfully!')
 }
+
+
 
 function exportToPDF(invoice: any) {
   const doc = new jsPDF()
